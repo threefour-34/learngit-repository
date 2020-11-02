@@ -98,3 +98,16 @@ git checkout -- 文件.格式(file)
   Git会输出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：
   Warning: Permanently added 'github.com' (RSA) to the list of known hosts.  
   这个警告只会出现一次，后面的操作就不会有任何警告了。
+
+  ## git clone命令
+  $ git clone https://github.com/GitHub账号名/远程仓库名.git  
+  克隆一个远程仓库到本地仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。  
+  再用  
+  $ cd 远程仓库名  
+  $ ls  
+  可以列出文件  
+  打开本地仓库，就可以看到本地仓库中有一个名字为远程仓库名的文件夹，里面就是远程仓库所有文件   
+  PS:Git支持多种协议，包括https(速度慢)，但ssh协议速度最快。  
+  要删除直接在本地仓库删除文件或文件夹就可以了
+
+  ## 分支管理
