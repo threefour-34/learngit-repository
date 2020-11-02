@@ -68,10 +68,33 @@ git checkout -- 文件.格式(file)
 场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
 
 ## git rm命令
-从版本库中删除  
+从版本库中删除文件  
 命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。  
+
 先 git rm 文件.格式  
 再 git commit -m "tips"
 
-10.31 廖雪峰 远程仓库哈哈哈 
- 
+## 远程仓库
+1. 创建SSH Key钥匙  
+   **$ ssh-keygen -t rsa -C "youremail@example.com"**  
+   一路回车，使用默认值  
+   如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，**id_rsa.pub**是公钥，可以放心地告诉任何人。
+2. 登录GitHub，打开Account settings的SSH Key页面  
+   然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容   
+3. 提醒：在GitHub上免费托管的Git仓库，任何人都可以看到喔（但只有你自己才能改）    
+   如果你不想让别人看到Git库，有两个办法：
+   1. 交点保护费，让GitHub把公开的仓库变成私有的，这样别人就看不见了（不可读更不可写）。
+   2. 自己动手，搭一个Git服务器，因为是你自己的Git服务器，所以别人也是看不见的。这个方法我们后面会讲到的，相当简单，公司内部开发必备。
+4. 添加远程仓库(GitHub上有提示)  
+   **$ git remote add origin https://github.com/GitHub账号名/本地仓库名.git**//添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+5. 把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。  
+   由于远程库是空的，我们第一次推送master分支时，加上了-u参数(即 git push -u origin master)，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+   从现在起，只要本地作了提交，就可以通过命令：
+  **$ git push origin master**
+  把本地master分支的最新修改推送至GitHub
+6. SSH警告
+  当你第一次使用Git的clone或者push命令连接GitHub时，会得到一个警告：  
+  这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入yes回车即可。  
+  Git会输出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了：
+  Warning: Permanently added 'github.com' (RSA) to the list of known hosts.  
+  这个警告只会出现一次，后面的操作就不会有任何警告了。
