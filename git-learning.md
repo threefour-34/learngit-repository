@@ -110,4 +110,55 @@ git checkout -- 文件.格式(file)
   PS:Git支持多种协议，包括https(速度慢)，但ssh协议速度最快。  
   要删除直接在本地仓库删除文件或文件夹就可以了
 
-  ## 分支管理
+  ## 分支管理  
+  1. 创建与合并分支概念  
+     主分支：master  
+    a. HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支  
+      b. 一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：  
+      c. 每次提交，master分支都会向前移动一步，这样，随着你不断提交，master分支的线也越来越长。  
+      d. 当我们创建新的分支，例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上：  
+      e. 从现在开始，对工作区的修改和提交就是针对dev分支了，比如新提交一次后，dev指针往前移动一步，而master指针不变：  
+      f. 假如我们在dev上的工作完成了，就可以把dev合并到master上。Git怎么合并呢？最简单的方法，就是直接把master指向dev的当前提交，就完成了合并  
+      g. 合并完分支后，甚至可以删除dev分支。删除dev分支就是把dev指针给删掉，删掉后，我们就剩下了一条master分支：  
+
+  2.  创建dev分支
+    $ git checkout -b dev  
+    Switched to a new branch 'dev'
+    //git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：  
+    $ git branch dev  
+    $ git checkout dev  
+    Switched to branch 'dev' 
+  3. git branch命令查看当前分支  
+   git branch命令会列出所有分支，当前分支前面会标一个*号。
+  4. 切换回master分支
+  $ git checkout master  
+Switched to branch 'master' //无法查看分支上提交/修改的文件
+  5. 合并分支
+   git merge命令用于合并指定分支到当前分支。  
+   $ git merge dev//当前分支为master  
+   还有其他合并方式  
+  6. 删除dev分支
+    $ git branch -d dev  
+  7. 再查看branch
+   $ git branch    
+  * master//只剩master了
+  8. 切换分支 git checkout <branch>//撤销 git checkout --<file>,一个命令两个作用不科学  
+  用switch更科学  
+  a. 创建并切换到新的dev分支，可以使用：  
+  $ git switch -c dev  
+  b. 直接切换到已有的master分支，可以使用：  
+  $ git switch master
+  9. **总结** 
+   Git鼓励大量使用分支：  
+查看分支：git branch  
+创建分支：git branch <name>  
+切换分支：git checkout <name>或者git switch <name>  
+创建+切换分支：git checkout -b <name>或者git switch -c <name>  
+合并某分支到当前分支：git merge <name>  
+删除分支：git branch -d <name>  
+
+## 解决冲突
+
+
+     
+
