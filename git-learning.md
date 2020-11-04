@@ -142,7 +142,7 @@ Switched to branch 'master' //无法查看分支上提交/修改的文件
   7. 再查看branch
    $ git branch    
   * master//只剩master了
-  8. 切换分支 git checkout <branch>//撤销 git checkout --<file>,一个命令两个作用不科学  
+  8. 切换分支 git checkout branch//撤销为git checkout --file,一个命令两个作用不科学  
   用switch更科学  
   a. 创建并切换到新的dev分支，可以使用：  
   $ git switch -c dev  
@@ -151,11 +151,11 @@ Switched to branch 'master' //无法查看分支上提交/修改的文件
   9. **总结** 
    Git鼓励大量使用分支：  
 查看分支：git branch  
-创建分支：git branch <name>  
-切换分支：git checkout <name>或者git switch <name>  
-创建+切换分支：git checkout -b <name>或者git switch -c <name>  
-合并某分支到当前分支：git merge <name>  
-删除分支：git branch -d <name>  
+创建分支：git branch name  
+切换分支：git checkout name或者git switch name  
+创建+切换分支：git checkout -b name或者git switch -c name  
+合并某分支到当前分支：git merge name  
+删除分支：git branch -d name  
 
 ## 解决冲突
 解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。  
@@ -176,9 +176,9 @@ git stash list查看隐藏的工作区内容
 git stash apply恢复，但不删除内容  
 git stash pop 恢复的同时删除stash内容  
 
-## git cherry-pick <commit ID>
+## git cherry-pick commit ID
 复制一个特定的提交到**当前分支**  
 
-## git branch -D<name>命令  
+## git branch -D name命令  
 强行删除或丢弃一个没有被合并过的分支  
 
