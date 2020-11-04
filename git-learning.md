@@ -52,7 +52,7 @@ Git提供了一个命令git reflog用来记录你的每一次命令
 
 ## Git管理的是修改，而不是文件
 
-## git checkou命令  
+## git checkout命令  
 git checkout -- 文件.格式(file)  
 丢弃工作区中的修改    
 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
@@ -158,7 +158,27 @@ Switched to branch 'master' //无法查看分支上提交/修改的文件
 删除分支：git branch -d <name>  
 
 ## 解决冲突
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。  
+用git log --graph命令可以看到分支合并图。  
+https://www.liaoxuefeng.com/wiki/896043488029600/900004111093344
 
+---
 
-     
+## 分支管理策略  
+合并分支时，加上--no-ff参数(表示禁止使用Fast forward)就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。  
+$ git merge --no-ff -m "merge with no-ff" dev//合并dev到master上
+
+***
+
+## git stash
+隐藏工作区内容(git add但没有commit的文件)  
+git stash list查看隐藏的工作区内容    
+git stash apply恢复，但不删除内容  
+git stash pop 恢复的同时删除stash内容  
+
+## git cherry-pick <commit ID>
+复制一个特定的提交到**当前分支**  
+
+## git branch -D<name>命令  
+强行删除或丢弃一个没有被合并过的分支  
 
