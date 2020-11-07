@@ -185,3 +185,11 @@ git stash pop 恢复的同时删除stash内容
 ## git branch -D name命令  
 强行删除或丢弃一个没有被合并过的分支  
 
+## 多人协作
+* 查看远程库的信息 
+  * git remote
+  * git remote -v 显示更详细的信息
+* 推送分支
+  * git push origin master
+  * 不是所有分支都要推送
+https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320
