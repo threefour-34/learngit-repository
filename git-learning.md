@@ -117,7 +117,7 @@ git checkout -- 文件.格式(file)
 * git pull <远程主机名> <远程分支名>:<本地分支名>
 ?????
 
-  ## 分支管理  
+## 分支管理  
   1. 创建与合并分支概念  
      主分支：master  
     a. HEAD严格来说不是指向提交，而是指向master，master才是指向提交的，所以，HEAD指向的就是当前分支  
@@ -197,3 +197,65 @@ git stash pop 恢复的同时删除stash内容
   * git push origin master
   * 不是所有分支都要推送
 https://www.liaoxuefeng.com/wiki/896043488029600/900375748016320
+
+## git rebase
+rebase操作可以把本地未push的分叉提交历史整理成直线；
+
+rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
+
+## 标签管理
+* 发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。
+* 首先，切换到需要打标签的分支上：
+* 敲命令git tag <name>
+* 用命令git tag查看所有标签：
+* 默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？
+* 方法是找到历史提交的commit id，然后打上就可以了，还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：git tag -a <name> -m"message" commit-id
+* 注意，标签不是按时间顺序列出，而是按字母排序的。可以用git show <tagname>查看标签信息：
+
+* 删除标签
+  * delete tag 'name'
+  * 因为创建的标签都只存储在本地，不会自动推送到远程。所以，打错的标签可以在本地安全删除。
+  * 如果要推送某个标签到远程，使用命令git push origin <tagname>：git push origin --tags
+  * 删除远程标签
+    * 本地删除
+    * 远程删除$ git push origin :refs/tags/<tagname> 
+     To github.com:username/repositoryname.git   
+     - [deleted]         <tagname>
+    * 注意origin和冒号之间有个空格
+* 强制删除
+
+## 使用GitHub
+* 如何参与一个开源项目呢？比如人气极高的bootstrap项目，这是一个非常强大的CSS框架，你可以访问它的项目主页https://github.com/twbs/bootstrap，点“Fork”就在自己的账号下克隆了一个bootstrap仓库，然后，从自己的账号下clone：
+* 一定要从自己的账号下clone仓库，这样你才能推送修改。如果从bootstrap的作者的仓库地址git@github.com:twbs/bootstrap.git克隆，因为没有权限，你将不能推送修改。
+* 如果你想修复bootstrap的一个bug，或者新增一个功能，立刻就可以开始干活，干完后，往自己的仓库推送。
+* 如果你希望bootstrap的官方库能接受你的修改，你就可以在GitHub上发起一个pull request。当然，对方是否接受你的pull request就不一定了。
+
+## 国内托管平台Gitee
+既关联GitHub远程仓库又关联Gitee
+* 我们先删除已关联的名为origin的远程库：
+  * git remote rm origin
+* git remote add github git@github.com:用户名/仓库名.git
+* git remote add gitee git@github.com:用户名/仓库名.git
+
+## 忽略特殊文件
+* 忽略某些文件时，需要编写.gitignore；
+* .gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
+
+## 配置别名
+* $ git config --global alias.co checkout  //用co 表示checkout
+$ git config --global alias.ci commit  
+$ git config --global alias.br branch  
+* --global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。
+
+## GUI工具
+例：Source Tree
+
+## Git Cheat Sheet
+
+
+
+
+  
+
+
+
